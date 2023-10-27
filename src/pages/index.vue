@@ -21,4 +21,10 @@ export default {
 .content {
   margin-top: 132px;
 }
+
+@media (max-width: 768px) {
+  .content {
+    margin-top: 20px;
+  }
+}
 </style>

@@ -28,8 +28,10 @@
       </nav>
       <router-link class="header__change-lang" to="/">En</router-link>
       <div class="header__contacts">
-        <a class="header__tel" href="tel:+74951234567">+7 (495) 123-45-67</a>
-        <button class="header__open-popup blue-btn">
+        <a class="header__tel" href="tel:+74951234567">
+          +7 (495) 123-45-67
+        </a>
+        <button @click="openDialog" class="header__open-popup blue-btn">
           Контакты
         </button>
       </div>
@@ -53,6 +55,9 @@ export default {
   methods: {
     changeShow() {
       this.$emit('changeShow', !this.show);
+    },
+    openDialog() {
+      this.$emit('openDialog', true);
     }
   },
 }
@@ -150,9 +155,24 @@ export default {
 }
 
 @media (max-width: 1270px) {
+  .container {
+    padding: 0 40px;
+  }
+
   .header__nav, .header__change-lang {
     display: none;
   }
+
+  .header__tel span {
+    display: none;
+  }
+
+  .header__tel img {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+
   .header__menu {
     display: block;
     position: relative;
@@ -163,6 +183,7 @@ export default {
     height: 30px;
     overflow: hidden;
     margin-left: 35px;
+
     div {
       height: 3px;
       position: absolute;
@@ -171,29 +192,62 @@ export default {
       background-color: #fff;
       border-radius: 2px;
     }
+
     .top {
       top: 2px;
       transition: transform .3s linear;
     }
+
     .mid {
       top: calc(50% - 1px);
       transition: opacity .3s linear;
     }
+
     .bottom {
       bottom: 2px;
       transition: transform .3s linear;
     }
+
     &.active {
       .mid {
         opacity: 0;
       }
+
       .top {
         transform: rotate(45deg) translate(10px, 10px);
       }
+
       .bottom {
         transform: rotate(-45deg) translate(6px, -6px);
       }
     }
+  }
+}
+
+@media (max-width: 1270px) {
+  .header {
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__menu {
+    margin-left: 20px;
+    div {
+      background-color: #506CCF;
+    }
+  }
+
+  .header__tel {
+    display: none;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .header__open-popup {
+    padding: 12px;
   }
 }
 </style>

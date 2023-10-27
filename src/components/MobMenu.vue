@@ -1,5 +1,5 @@
 <template>
-  <div class="mob-menu">
+  <div class="mob-menu" ref="menu">
     <button @click="changeShow" class="mob-menu__close">
       <div class="top"></div>
       <div class="bottom"></div>
@@ -25,6 +25,9 @@
       </li>
     </ul>
     <router-link class="mob-menu__change-lang" to="/">En</router-link>
+    <a class="mob-menu__tel" href="tel:+74951234567">
+      <img src="@/assets/icons/phone.svg" alt="">
+    </a>
   </div>
 </template>
 
@@ -38,9 +41,17 @@ export default {
   },
   methods: {
     changeShow() {
-      this.$emit('changeShow', false);
+      this.$refs.menu.style.transform = 'translate(-100%)';
+      setTimeout(() => {
+        this.$emit('changeShow', false);
+      }, 300);
     }
   },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.menu.style.transform = 'translate(0)';
+    }, 100);
+  }
 }
 </script>
 
@@ -53,6 +64,12 @@ export default {
   z-index: 2;
   background-color: #49a1f1;
   padding: 40px 60px;
+  transform: translate(-100%);
+  transition: transform .3s linear;
+  box-shadow: 2px 0 2px #49a1f1;
+  &__tel {
+    display: none;
+  }
   &__list {
     display: flex;
     flex-direction: column;
@@ -111,6 +128,34 @@ export default {
       bottom: 2px;
       transform: rotate(-45deg) translate(6px, -6px);
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .mob-menu {
+    right: 0;
+    padding: 40px 15px;
+    &__list {
+      margin: 10px 0;
+      gap: 15px 0;
+    }
+
+    &__change-lang {
+      display: block;
+      margin-top: 20px;
+    }
+
+    &__tel {
+      display: block;
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      img {
+        width: 30px;
+        height: 30px;
+
+      }
+    };
   }
 }
 </style>

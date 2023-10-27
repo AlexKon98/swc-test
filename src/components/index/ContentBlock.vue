@@ -84,4 +84,41 @@ export default {
     transform: translate(0);
   }
 }
+
+@media (max-width: 1270px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 999px) {
+  .content__text {
+    text-shadow: .5px .5px 1px #DFE8F4;
+  }
+}
+
+@media (max-width: 768px) {
+  .content__text {
+    text-shadow: none;
+  }
+
+  .content__title {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .content__title, .content__text {
+    max-width: none;
+  }
+
+  .content__btn,
+  .content__text,
+  .content__title {
+    margin-bottom: 20px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+}
 </style>
